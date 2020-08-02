@@ -8,8 +8,7 @@ if len(meowFiles) >= 10:
 
 fileList = listdir("poems")                                      #select a random file from the "poems" directory
 fileNum = randint(0, len(fileList) - 1)
-#inputFile = fileList[fileNum]
-inputFile = "Forget-Me-Neruda.txt"
+inputFile = fileList[fileNum]
 originalFile = open(f"poems/{inputFile}", "r")                    #open in read mode
 print(f"File opened: {inputFile}")                                
 
