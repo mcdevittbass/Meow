@@ -8,7 +8,8 @@ if len(meowFiles) >= 10:
 
 fileList = listdir("poems")                                      #select a random file from the "poems" directory
 fileNum = randint(0, len(fileList) - 1)
-inputFile = fileList[fileNum]
+#inputFile = fileList[fileNum]
+inputFile = "Forget-Me-Neruda.txt"
 originalFile = open(f"poems/{inputFile}", "r")                    #open in read mode
 print(f"File opened: {inputFile}")                                
 
@@ -25,14 +26,15 @@ lines = originalFile.readlines()                                  #parse lines f
 
 for line in lines:                                                #split lines into lists of words
     wordList = line.split()                                         
-    lineLength = len(wordList)
-    if lineLength != 0:
-        for i in range(lineLength):
-            if i % randint(1, lineLength - 1) == randint(0, 1):
-                newFile.write(wordList[i] + " MEOW ")              #write method returns length, in bytes, of string written
-            else:
-                newFile.write(wordList[i] + " ")
-        newFile.write("\n")
+    lineLength = len(wordList)                                            
+    for i in range(lineLength):
+        if lineLength <= 1:
+            newFile.write(wordList[i] + " MEOW ") 
+        elif i % randint(1, lineLength - 1) == randint(0, 1):         #randomly add "MEOW" between words
+            newFile.write(wordList[i] + " MEOW ")              
+        else:
+            newFile.write(wordList[i] + " ")
+    newFile.write("\n")
 
 newFile.close()                                                  #always close files!
 originalFile.close()                                             #alternatively, use a with statement - it will automatically close files after running
