@@ -15,11 +15,11 @@ print(f"File opened: {inputFile}")
 while(True):
     newFileName = f"{input('What do you want to call your new text file? (do not include .txt) ')}.txt"
     if path.exists(f"meow-poems/{newFileName}"): 
-        print("File already exists. Please select a new name")          #handle conflicting file names
+        print("File already exists. Please select a new name")    #handle conflicting file names
     else:
         break
 
-newFile = open(f"meow-poems/{newFileName}", "w")                        #create new file in write mode
+newFile = open(f"meow-poems/{newFileName}", "w")                  #create new file in write mode
 
 lines = originalFile.readlines()                                  #parse lines from each file
 
@@ -27,9 +27,7 @@ for line in lines:                                                #split lines i
     wordList = line.split()                                         
     lineLength = len(wordList)                                            
     for i in range(lineLength):
-        if lineLength <= 1:
-            newFile.write(wordList[i] + " MEOW ") 
-        elif i % randint(1, lineLength - 1) == randint(0, 1):         #randomly add "MEOW" between words
+        if i % 3 == randint(0, 1):                               #randomly add "MEOW" between words
             newFile.write(wordList[i] + " MEOW ")              
         else:
             newFile.write(wordList[i] + " ")
